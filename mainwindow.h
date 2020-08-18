@@ -21,7 +21,7 @@ public:
  private:
     void run();
     MainWindow *m_MainWindow;
-    void left_right_snake(unsigned long color, int speed, int start_location);
+    void snake(unsigned long, int, int);
 };
 
 class MainWindow : public QMainWindow

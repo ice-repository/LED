@@ -75,20 +75,23 @@ void MainWindow::paintEvent(QPaintEvent *)
 }
 
 //This function creates snakes that run across the screen, left to right
-//Input:                                    (color, index, start_location)
-void MyThread::left_right_snake(unsigned long color, int i, int start_location)
+//Input:                                     (color, index, start_location)
+void MyThread::snake(unsigned long color, int index, int start_location)
 {
-    if(i == start_location){
-        leds[start_location+13] = BLACK;
+    int i = start_location + index;
+    int x = start_location;
+
+    if(i == x){
+        leds[x+13] = BLACK;
         leds[i] = color;
     }
-    else if(i == start_location+1){
-        leds[start_location+14] = BLACK;
+    else if(i == x+1){
+        leds[x+14] = BLACK;
         leds[i] = color;
         leds[i-1] = color;
     }
-    else if(i == start_location+2){
-        leds[start_location+15] = BLACK;
+    else if(i == x+2){
+        leds[x+15] = BLACK;
         leds[i] = color;
         leds[i-1] = color;
         leds[i-2] = color;
@@ -113,12 +116,16 @@ void MyThread::run()
     {
         for(int i = 0; i < 16 ; i++) //loops over all 16 spaces
         {
-            delay(200);
+            delay(10);
             //              (color, index, start_location)
-            left_right_snake(GREY, i, 16);
-            left_right_snake(GREY, i, 80);
-            left_right_snake(GREY, i, 144);
-            left_right_snake(GREY, i, 208);
+            snake(GREY, i, 16);
+            snake(GREY, i, 32);
+            snake(GREY, i, 80);
+            snake(GREY, i, 96);
+            snake(GREY, i, 144);
+            snake(GREY, i, 160);
+            snake(GREY, i, 208);
+            snake(GREY, i, 224);
         }
 
     }
